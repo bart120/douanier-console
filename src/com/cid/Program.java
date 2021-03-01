@@ -1,5 +1,7 @@
 package com.cid;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
 import com.cid.metier.Contact;
@@ -35,8 +37,34 @@ public class Program {
 	}
 
 	private static void ajouterContact() {
-		Contact c = new Contact("bob");
-		c.setNom("toto");
+		Contact c = new Contact();
+
+		System.out.println("Nom ?");
+		c.setNom(scan.nextLine());
+
+		System.out.println("Prénom ?");
+		c.setPrenom(scan.nextLine());
+		
+		do {
+			System.out.println("Mail ?");
+			try {
+				c.setMail(scan.nextLine());
+				break;
+			} catch (ParseException e1) {
+				System.out.println("Erreur de saisie");
+			}
+		} while (true);
+
+		do {
+			try {
+				System.out.println("Date de naissance ?");
+				SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+				c.setDateNaissance(format.parse(scan.nextLine()));
+				break;
+			} catch (ParseException e) {
+				System.out.println("Erreur de saisie");
+			}
+		} while (true);
 
 	}
 
