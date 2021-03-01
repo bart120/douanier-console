@@ -2,6 +2,8 @@ package com.cid;
 
 import java.util.Scanner;
 
+import com.cid.metier.Contact;
+
 public class Program {
 
 	private static Scanner scan = new Scanner(System.in);
@@ -33,7 +35,8 @@ public class Program {
 	}
 
 	private static void ajouterContact() {
-		
+		Contact c = new Contact("bob");
+		c.setNom("toto");
 
 	}
 
