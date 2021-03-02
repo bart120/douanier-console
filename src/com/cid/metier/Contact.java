@@ -1,12 +1,15 @@
 package com.cid.metier;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
 public class Contact {
+	
+	public static final String SEPARATEUR = ";";
 
 	private String nom;
 	private String prenom;
@@ -70,5 +73,22 @@ public class Contact {
 		this.setMail(mail);
 		this.dateNaissance = dateNaissance;
 	}
+
+	@Override
+	public String toString() {
+		StringBuilder build = new StringBuilder();
+		build.append(this.nom);
+		build.append(SEPARATEUR);
+		build.append(this.prenom);
+		build.append(SEPARATEUR);
+		build.append(this.mail);
+		build.append(SEPARATEUR);
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		build.append(format.format(this.dateNaissance));
+		
+		return build.toString();
+	}
+	
+	
 
 }
