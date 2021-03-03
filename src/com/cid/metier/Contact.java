@@ -2,6 +2,7 @@ package com.cid.metier;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -91,12 +92,10 @@ public class Contact implements Comparable<Contact>{
 
 	@Override
 	public int compareTo(Contact o) {
-		/*if( this.getNom().equals(o.getNom()))
-				return 0;*/
+		if( this.getNom().equals(o.getNom())) {
+			return this.getPrenom().compareTo(o.getPrenom());
+		}
 		return this.getNom().compareTo(o.getNom());
-		
-		//return 4000;
 	}
-	
 
 }

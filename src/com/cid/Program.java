@@ -1,16 +1,14 @@
 package com.cid;
 
-import java.io.Closeable;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
 import java.util.Scanner;
 
 import com.cid.metier.Contact;
+import com.cid.metier.comparators.ContactDateComparator;
 import com.cid.services.ServiceContact;
 
 public class Program {
@@ -36,6 +34,9 @@ public class Program {
 			case "3":
 				trierContact();
 				break;
+			case "4":
+				trierContactParDate();
+				break;
 			case "q":
 				scan.close();
 				return;
@@ -48,6 +49,15 @@ public class Program {
 			scan.nextLine();
 		}
 
+	}
+
+	private static void trierContactParDate() {
+		ArrayList<Contact> liste =  sc.lister();
+		Collections.sort(liste, new ContactDateComparator());
+		
+		for (Contact c : liste) {
+			System.out.println(c.toString());
+		}
 	}
 
 	private static void trierContact() {
@@ -119,6 +129,7 @@ public class Program {
 		System.out.println("1- Ajouter un contact");
 		System.out.println("2- Afficher les contacts");
 		System.out.println("3- Trier les contacts");
+		System.out.println("4- Trier les contacts par date");
 		System.out.println("Q- Quitter");
 
 	}
