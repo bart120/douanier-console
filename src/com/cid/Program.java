@@ -5,7 +5,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import com.cid.metier.Contact;
 import com.cid.metier.comparators.ContactDateComparator;
@@ -37,6 +42,12 @@ public class Program {
 			case "4":
 				trierContactParDate();
 				break;
+			case "5":
+				trierContactParMail();
+				break;
+			case "6":
+				rechercherContactNom();
+				break;
 			case "q":
 				scan.close();
 				return;
@@ -49,6 +60,53 @@ public class Program {
 			scan.nextLine();
 		}
 
+	}
+
+	private static void rechercherContactNom() {
+		Stream<Contact> liste =  sc.lister().stream();
+		System.out.println("Saisir recherche ?");
+		String saisie = scan.nextLine();
+		
+		/*Stream<Contact> resultat = liste.filter(new Predicate<Contact>() {
+			@Override
+			public boolean test(Contact t) {
+				return t.getNom().contains(saisie);
+			}
+		});*/
+		
+		Stream<Contact> resultat2 = liste.filter(t -> t.getNom().contains(saisie));
+		
+		/*resultat2.forEach(new Consumer<Contact>() {
+			@Override
+			public void accept(Contact c) {
+				System.out.println(c.toString());
+			}
+		});*/
+		
+		resultat2.forEach(c -> System.out.println(c.toString()));
+		
+		
+		
+		
+		
+	}
+
+	private static void trierContactParMail() {
+		ArrayList<Contact> liste =  sc.lister();
+		
+		//implementation sur classe anonyme
+		Comparator<Contact> comp = new Comparator<Contact>() {
+			@Override
+			public int compare(Contact o1, Contact o2) {
+				return o1.getMail().compareTo(o2.getMail());
+			}
+		};
+		
+		Collections.sort(liste, comp);
+		
+		for (Contact c : liste) {
+			System.out.println(c.toString());
+		}
 	}
 
 	private static void trierContactParDate() {
@@ -130,6 +188,8 @@ public class Program {
 		System.out.println("2- Afficher les contacts");
 		System.out.println("3- Trier les contacts");
 		System.out.println("4- Trier les contacts par date");
+		System.out.println("5- Trier les contacts par mail");
+		System.out.println("6- Rechercher les contacts sur nom");
 		System.out.println("Q- Quitter");
 
 	}
