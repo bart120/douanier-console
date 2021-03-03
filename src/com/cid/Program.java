@@ -1,9 +1,13 @@
 package com.cid;
 
+import java.io.Closeable;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 import com.cid.metier.Contact;
@@ -29,6 +33,9 @@ public class Program {
 			case "2":
 				afficherContacts();
 				break;
+			case "3":
+				trierContact();
+				break;
 			case "q":
 				scan.close();
 				return;
@@ -43,6 +50,16 @@ public class Program {
 
 	}
 
+	private static void trierContact() {
+		
+		ArrayList<Contact> liste =  sc.lister();
+		Collections.sort(liste);
+		
+		for (Contact c : liste) {
+			System.out.println(c.toString());
+		}
+	}
+
 	private static void afficherContacts() {
 		ArrayList<Contact> liste =  sc.lister();
 		for (Contact c : liste) {
@@ -53,6 +70,11 @@ public class Program {
 
 	private static void ajouterContact() {
 		Contact c = new Contact();
+		/*Object o = new Contact(); // OUI
+		Contact o = new Object();// NON
+		*/
+		
+		
 		
 		System.out.println("Nom ?");
 		c.setNom(scan.nextLine());
@@ -96,6 +118,7 @@ public class Program {
 		System.out.println("-- MENU --");
 		System.out.println("1- Ajouter un contact");
 		System.out.println("2- Afficher les contacts");
+		System.out.println("3- Trier les contacts");
 		System.out.println("Q- Quitter");
 
 	}

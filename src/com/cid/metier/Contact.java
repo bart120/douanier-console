@@ -7,10 +7,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public class Contact {
+public class Contact implements Comparable<Contact>{
 	
 	public static final String SEPARATEUR = ";";
-
+	
 	private String nom;
 	private String prenom;
 	private String mail;
@@ -88,7 +88,15 @@ public class Contact {
 		
 		return build.toString();
 	}
-	
+
+	@Override
+	public int compareTo(Contact o) {
+		/*if( this.getNom().equals(o.getNom()))
+				return 0;*/
+		return this.getNom().compareTo(o.getNom());
+		
+		//return 4000;
+	}
 	
 
 }

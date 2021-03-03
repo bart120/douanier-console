@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 import com.cid.metier.Contact;
 
-public class ServiceContact {
+public class ServiceContact{
 
 	private static final String FICHIER = "C:\\Users\\vlecl\\Documents\\contact.csv";
 
@@ -57,5 +57,4 @@ public class ServiceContact {
 		
 		return liste;
 	}
-
 }
